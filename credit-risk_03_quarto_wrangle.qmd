@@ -1,0 +1,102 @@
+---
+title: "Wrangle rows and columns"
+format: html
+---
+
+# Instructions
+
+This week, you learned several more functions from the dplyr package (pronounced DEE-ply-er). These functions help you work with the rows and columns in your data set.
+
+You'll use these skills to investigate how employment relates to credit amounts.
+
+To learn more about the variables contained in the data set, refer to the data dictionary: https://rsacdn.link/milestones/internal/v2/credit-risk/assets/credit-risk_dictionary.html
+
+# Milestone
+
+```{r}
+#| label: setup
+#| include: false
+
+# Load your packages here
+
+```
+
+## Create and select columns
+
+This week, you'll calculate the average credit amount for skilled worker applicants, grouped by length of employment.
+
+## Recreation
+
+### Part 1 - Import
+
+Before you begin, you will need to import your data set. Use the code chunk below to read the data from the data file `credit_personal.csv`, which is stored in the `data/` folder in your working directory. Be sure to save the data to an object named `credit_personal`.
+
+```{r}
+#| label: recreation-import
+
+```
+
+### Part 2 - Create
+
+Run the chunk below to see a table.
+
+```{r}
+#| label: recreate-this
+#| message: false
+solution <- readr::read_csv("data/milestone03.csv")
+solution
+```
+
+Use `credit_personal` to recreate this table displaying the average credit amount (specifically the mean amount) grouped by how long the applicant has been employed, for skilled workers only.
+
+You will need to:
+
+1. Limit your data set to only the "skilled" job type.
+
+2. Use `mutate()` and `case_when()` to make a new variable called `employment_length`, which uses categories of the existing `employment` variable to determine if applicants were employed for more or less than 4 years.
+
+3. Find the mean credit awarded for each category of `employment_length`.
+
+4. Sort the rows in increasing order of mean credit
+
+
+Write your code in the chunk below. Store your result in an object called `credit_summary_employment`.
+
+```{r}
+#| label: recreation
+
+```
+
+To test whether you have the same answer as the solution, run the following code chunk. Note that we're using the `tolerance` argument in the `waldo::compare()` function to ignore minor differences in rounding error.
+
+```{r}
+#| label: compare
+#| eval: false
+#| message: false
+
+waldo::compare(
+  credit_summary_employment,
+  solution,
+  tolerance = 1e-4
+)
+```
+
+## Extension
+
+For your extension, consider addressing one of the following research questions with a table and/or plot:
+
+1. What is the relationship between amount of savings and age? (Hint: Decide how you will make a new variable from `savings_status` to address this question.)
+2. Do applicants who own their home tend to have lived there longer (`residence_since`) than applicants who rent?
+3. Is there a relationship between applicants' decade of age (e.g. 20s, 30s, 40s) and the average amount of credit awarded?
+4. [any other research question of interest]
+
+Alternately, working with a data set of your own, complete the following:
+
+1. Read in your data
+2. Create at least one new variable in your data set (using `mutate()` and/or `summarize()`), or use other dplyr functions to alter your data
+3. Use your updated data set to create at least one graph and/or table
+
+```{r}
+#| label: extension
+
+```

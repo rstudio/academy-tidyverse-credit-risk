@@ -1,0 +1,97 @@
+---
+title: "Credit Risk in Germany"
+author: "Your name"
+date: today
+format: 
+  html:
+    theme: flatly
+    embed-resources: true
+    toc: true
+    df-print: paged
+knitr:
+  opts_chunk:
+    echo: FALSE
+    message: FALSE
+    warning: FALSE
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+
+credit_personal <- readr::read_csv("../data/credit_personal.csv")
+```
+
+## Background
+
+The `credit_personal` data set describes the characteristics of German credit applicants. The data come from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data): 
+
+> This data set classifies people described by a set of attributes as good or bad credit risks. 
+
+```{r}
+#| label: data
+#| echo: true
+credit_personal
+```
+
+## Results
+
+We explored how average credit amount varies by applicant job type.
+
+```{r}
+#| label: analysis
+job_summary <- 
+  credit_personal |>
+  group_by(job) |>
+  summarize(avg_credit_amnt = mean(credit_amount)) |>
+  ungroup() 
+
+job_summary
+```
+
+```{r}
+#| label: computation
+job_with_max <- 
+  job_summary |> 
+  filter(avg_credit_amnt == max(avg_credit_amnt)) |> 
+  select(job) |> 
+  pull()
+
+max_avg_credit <- 
+  job_summary |> 
+  filter(avg_credit_amnt == max(avg_credit_amnt)) |> 
+  select(avg_credit_amnt) |> 
+  pull() |> 
+  round(digits = 2)
+
+job_with_min <- 
+  job_summary |> 
+  filter(avg_credit_amnt == min(avg_credit_amnt)) |> 
+  select(job) |> 
+  pull()
+
+min_avg_credit <- 
+  job_summary |> 
+  filter(avg_credit_amnt == min(avg_credit_amnt)) |> 
+  select(avg_credit_amnt) |> 
+  pull() |> 
+  round(digits = 2)
+```
+
+On average, applicants with jobs classified as "`r job_with_max`" have the highest average credit amount, at `r max_avg_credit` DM. 
+
+Applicants with jobs classified as "`r job_with_min`" have the lowest average credit amount, at `r min_avg_credit` DM.
+
+```{r}
+#| label: figure
+job_summary |>
+  ggplot(aes(fct_reorder(job, avg_credit_amnt), avg_credit_amnt)) +
+  geom_col() +
+  labs(
+    title = "Average credit amount by job type",
+    x = "Job type",
+    y = "Average credit amount") + 
+  coord_flip() 
+```
