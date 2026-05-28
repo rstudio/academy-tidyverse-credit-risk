@@ -23,7 +23,7 @@ You'll share your extension with your groupmates at the weekly meeting, and show
 
 ## The `credit_personal` data set
 
-You can find a brief description of the data and its variables in the data dictionary: https://rsacdn.link/milestones/internal/v2/credit-risk/assets/credit-risk_dictionary.html
+You can find a brief description of the data and its variables in the data dictionary: https://rsacdn.link/milestones/internal/v2/tidyverse/credit-risk/assets/credit-risk_dictionary.html
 
 # Milestone
 

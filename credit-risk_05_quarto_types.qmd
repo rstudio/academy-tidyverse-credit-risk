@@ -9,7 +9,7 @@ This week, you worked with three new data types in R -- factors, strings, and da
 
 In this milestone, you'll further tidy the joined data set from Milestone 4 using stringr functions. Then, you'll visualize the tidied data set using tools from ggplot2.
 
-To learn more about the variables contained in the data set, refer to the data dictionary: https://rsacdn.link/milestones/internal/v2/credit-risk/assets/credit-risk_dictionary.html
+To learn more about the variables contained in the data set, refer to the data dictionary: https://rsacdn.link/milestones/internal/v2/tidyverse/credit-risk/assets/credit-risk_dictionary.html
 
 # Milestone
 
