@@ -11,8 +11,6 @@ You'll use those skills to combine the `credit_personal` data set with a new dat
 
 To learn more about the variables contained in the data set(s), refer to the data dictionary: https://rstudio.github.io/academy-tidyverse-credit-risk/assets/credit-risk_dictionary.html
 
-Remember that all tidyverse packages have already been installed for you but you will need to *load* the ones you want to use.
-
 # Milestone
 
 ```{r}
